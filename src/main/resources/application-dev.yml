@@ -1,0 +1,38 @@
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driverClassName: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+  kafka:
+    bootstrap-servers: ${KAFKA_BROKER}
+    consumer:
+      auto-offset-reset: earliest
+      group-id: jmgits-dev
+  liquibase:
+    change-log: db/change_log.xml
+    contexts: dev
+    enabled: true
+
+logging:
+  level:
+    com:
+      jmgits: DEBUG
+
+application:
+  forex:
+    type: dummy
+  messaging:
+    allow-creation: true
+  token:
+    allow-creation: true
+    secret: ${TOKEN_SECRET:mySecret}
+  transaction:
+    topic:
+      name: transaction-topic-dev

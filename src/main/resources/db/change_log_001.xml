@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet id="2021-12-19_001" author="javmg">
+
+        <createTable tableName="customer">
+            <column name="id" type="varchar(36)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+
+            <column name="default_currency" type="varchar(3)">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+
+    </changeSet>
+
+    <changeSet id="2021-12-19_002" author="javmg">
+
+        <createTable tableName="account">
+            <column name="id" type="varchar(36)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+
+            <column name="iban" type="varchar(256)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="bic" type="varchar(256)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="bank_name" type="varchar(256)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="bank_address" type="varchar(256)">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+
+    </changeSet>
+
+    <changeSet id="2021-12-19_003" author="javmg">
+
+        <createTable tableName="customer_account">
+            <column name="customer_id" type="varchar(36)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+
+            <column name="account_id" type="varchar(36)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+
+        </createTable>
+
+        <addForeignKeyConstraint
+                constraintName="fk_customer_account__customer"
+                baseTableName="customer_account"
+                baseColumnNames="customer_id"
+                referencedTableName="customer"
+                referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint
+                constraintName="fk_customer_account__account"
+                baseTableName="customer_account"
+                baseColumnNames="account_id"
+                referencedTableName="account"
+                referencedColumnNames="id"/>
+
+    </changeSet>
+
+    <changeSet id="2021-12-19_004" author="javmg">
+
+        <createTable tableName="transaction">
+            <column name="id" type="varchar(36)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+
+            <column name="currency" type="varchar(3)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="amount" type="varchar(256)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="iban" type="varchar(256)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="business_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="description" type="varchar(256)">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+
+    </changeSet>
+
+</databaseChangeLog>

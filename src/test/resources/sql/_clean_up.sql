@@ -1,0 +1,9 @@
+
+SET REFERENTIAL_INTEGRITY FALSE;
+
+DELETE FROM `account`;
+DELETE FROM `customer`;
+DELETE FROM `customer_account`;
+DELETE FROM `transaction`;
+
+SET REFERENTIAL_INTEGRITY TRUE;

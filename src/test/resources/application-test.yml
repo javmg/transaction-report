@@ -1,0 +1,36 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:db-test
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+  kafka:
+    consumer:
+      auto-offset-reset: earliest
+      group-id: jmgits-test
+  liquibase:
+    change-log: db/change_log.xml
+    enabled: true
+
+logging:
+  level:
+    com:
+      jmgits: DEBUG
+
+application:
+  forex:
+    type: dummy
+  messaging:
+    allow-creation: true
+  token:
+    allow-creation: true
+    secret: ${TOKEN_SECRET:mySecret}
+  transaction:
+    topic:
+      name: transaction-topic

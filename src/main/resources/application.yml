@@ -1,0 +1,24 @@
+info:
+  artifact: ${project.artifactId}
+  version: ${project.version}
+
+spring:
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+  jackson:
+    serialization.indent-output: true
+    serialization.fail-on-empty-beans: false
+    serialization.write-dates-as-timestamps: false
+
+logging:
+  level:
+    org:
+      springframework:
+        boot:
+          autoconfigure: ERROR
+
+server:
+  port: 8080
+  servlet:
+    context-path: /transaction-report
+
